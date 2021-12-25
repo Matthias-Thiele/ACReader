@@ -5,15 +5,20 @@ ACReader *signalRot;
 ACReader *signalWeiss;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
-  signalRot = new ACReader(A0, 60);
-  signalWeiss = new ACReader(A1, 60);
+
+  // Initialize every ACReader object. Each object should
+  // have an A/D port and a cycle time in milliseconds.
+  // The cycle time should be slightly larger than one
+  // period of the AC signal.
+  signalRot = new ACReader(A0, 25);
+  signalWeiss = new ACReader(A1, 25);
   Serial.println("ACReader Test started.");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Every ACReader object has to be updated at
+  // least every millisecond.
   unsigned long now = millis();
   signalRot->tick(now);
   signalWeiss->tick(now);
