@@ -15,7 +15,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   unsigned long now = millis();
-  currentMeter->tick(now);
+  signalRot->tick(now);
+  signalWeiss->tick(now);
 
   static unsigned long outputDelay = 0;
   if (now > outputDelay) {
